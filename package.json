@@ -1,0 +1,19 @@
+{
+  "name": "api-nodejs-crud",
+  "version": "1.0.0",
+  "description": "Projeto básico para api, com CRUD em MongoDB e autenticação JWT",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.16.3",
+    "mongoose": "*"
+  },
+  "author": "Joao Paulo Rezende da Silva",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}
