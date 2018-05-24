@@ -4,7 +4,8 @@
   "description": "Projeto básico para api, com CRUD em MongoDB e autenticação JWT",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "debug": "node --nolazy --inspect-brk=9229 server.js"
   },
   "dependencies": {
     "body-parser": "~1.0.1",
