@@ -2,7 +2,7 @@
  * Arquivo: server.js
  * Descrição: 
  * Autor: João Paulo Rezende da Silva
- * Data de Criação: 14/04/2018
+ * Data de Criação: 24/05/2018
  */
 
 //Configurar o setup da App:
@@ -58,6 +58,17 @@ router.route('/clientes')
             }
             else{
                 res.json({ message:'cliente cadastrado com sucesso!' });
+            }
+        });
+    })
+    /* 2) Recurso para recuperar todos clientes (acessar em Get http://localhost:8000/api/clientes)*/
+    .get(function(req, res){
+        Cliente.find(function(error, clientes){
+            if(error){
+                res.send('Erro ao tentar recuperar os clientes....: ' + error);
+            }
+            else{
+                res.json(clientes);
             }
         });
     });
