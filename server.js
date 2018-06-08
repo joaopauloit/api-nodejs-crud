@@ -72,6 +72,18 @@ router.route('/clientes')
             }
         });
     });
+    /* 3) Recurso para recuperar cliente por id (acessar em Get http://localhost:8000/api/clientes/id/:id)*/
+    router.route('/clientes/id/:id').get(function(req, res){
+        var id = req.params.id;
+        Cliente.findById(id, function(error, cliente){
+            if(error){
+                res.send('Erro ao tentar recuperar o cliente....: ' + error);
+            }
+            else{
+                res.json(cliente);
+            }
+        });
+    });
 
 //Denifindo uma rota prefixada '/api':
 //Todas chamadas começaram com '/api/', exemplo localhost:8000/api/usuarios
