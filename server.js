@@ -83,6 +83,38 @@ router.route('/clientes')
                 res.json(cliente);
             }
         });
+    })
+    /* 4) Recurso para atualizar dados do cliente (acessar em PUT http://localhost:8000/api/clientes/id/:id)*/
+    .put(function(req, res){
+        var id = req.params.id;
+        Cliente.findById(id, function(error, cliente){
+            if(error){
+                res.send('Erro ao tentar recuperar o cliente....: ' + error);
+            }
+            else{
+                if(cliente){
+                    var nomeFantasia = req.body.nomeFantasia;
+                    var razaoSocial = req.body.razaoSocial;
+                    var cnpj = req.body.cnpj;
+                    
+                    Cliente.update({ _id: id }, { $set: { 
+                            nomeFantasia: nomeFantasia,
+                            razaoSocial: razaoSocial,
+                            cnpj: cnpj,
+                        } },function(error){
+                        if(error){                
+                            res.send('Erro ao tentar atualizar o cliente....: ' + error);
+                        }
+                        else{
+                            res.json({ message:'cliente atualizado com sucesso!' });
+                        }
+                    });
+                }
+                else{
+                    res.json({ message:'cliente não encontrado!' });
+                }
+            }
+        });
     });
 
 //Denifindo uma rota prefixada '/api':
