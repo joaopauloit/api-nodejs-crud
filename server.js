@@ -96,7 +96,6 @@ router.route('/clientes')
                     var nomeFantasia = req.body.nomeFantasia;
                     var razaoSocial = req.body.razaoSocial;
                     var cnpj = req.body.cnpj;
-                    
                     Cliente.update({ _id: id }, { $set: { 
                             nomeFantasia: nomeFantasia,
                             razaoSocial: razaoSocial,
@@ -115,9 +114,34 @@ router.route('/clientes')
                 }
             }
         });
+    })
+    /* 5) Recurso para deletar dados do cliente (acessar em DELETE http://localhost:8000/api/clientes/id/:id)*/
+    .delete(function(req, res){
+        var id = req.params.id;
+        Cliente.findById(id, function(error, cliente){
+            if(error){
+                res.send('Erro ao tentar recuperar o cliente....: ' + error);
+            }
+            else{
+                if(cliente){
+                    
+                    Cliente.deleteOne({ _id: id }, function(error){
+                        if(error){                
+                            res.send('Erro ao tentar deletar o cliente....: ' + error);
+                        }
+                        else{
+                            res.json({ message:'cliente deletado com sucesso!' });
+                        }
+                    });
+                }
+                else{
+                    res.json({ message:'cliente não encontrado!' });
+                }
+            }
+        });
     });
 
-//Denifindo uma rota prefixada '/api':
+//Definindo uma rota prefixada '/api':
 //Todas chamadas começaram com '/api/', exemplo localhost:8000/api/usuarios
 app.use('/api', router);
 
