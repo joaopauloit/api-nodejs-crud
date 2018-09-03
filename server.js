@@ -12,6 +12,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
 var clientes = require('./app/routes/clientes');
+var authentication = require('./app/security/authentication');
+var verifyToken = require('./app/security/verifyToken');
 
 //Configuração da variável app para usar o 'bodyParser()':
 app.use(bodyParser.json());
@@ -23,7 +25,7 @@ var port = process.env.port || 8000;
 var router = express.Router();
 
 //Todo request a api passará por essa função de callback primeiramente e podemos usar para log do lado do servidor
-router.use(function(req, res, next){
+router.use(verifyToken, function(req, res, next){
     console.log('Alguém está fazendo requisição a api ;)');
     next();
 });
@@ -35,6 +37,9 @@ router.get('/online', function(req, res){
 
 //Chamar routes clientes
 router.use(clientes);
+
+//Chamar routes authentication
+router.use('/auth/', authentication);
 
 //Definindo uma rota prefixada '/api':
 //Todas chamadas começaram com '/api/', exemplo localhost:8000/api/usuarios

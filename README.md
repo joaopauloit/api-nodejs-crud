@@ -21,3 +21,5 @@ com autenticação na api usando JWT e será utilizado tipos especificos de verb
 8 - <a href="https://joaopaulors.wordpress.com/2018/06/18/criando-o-quarto-e-ultimo-recurso-da-api-para-deletar-dados-do-mongodb-com-nodejs/">Criando o quarto e ultimo recurso da API para deletar dados do MongoDB com NodeJS</a>
 
 9 - <a href="https://joaopaulors.wordpress.com/2018/06/29/melhorando-o-codigo-da-nossa-server-js-da-api-com-nodejs/">Melhorando o código da nossa Server.js da API com NodeJS</a>
+
+10 - <a href="https://joaopaulors.wordpress.com/2018/09/03/implementado-autenticacao-com-jwt-na-api-com-nodejs/">Implementado autenticação com JWT na API com NodeJS</a>
